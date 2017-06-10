@@ -1,0 +1,66 @@
+{
+    "archive": {
+     
+    }, 
+    "build": {
+           "build1": {
+            "url": "http://ker.iutsd.univ-lorraine.fr/hough3d-src.tar.gz",
+            "construct": "cd hough3d-src; make",
+            "move": "hough3d-src/hough3dlines"
+             }
+    }, 
+    
+    
+    
+    "general": {
+        "demo_title": "Iterative Hough Transform for Line Detection in 3D Point Clouds",
+        "xlink_article" : ""
+    }, 
+    "inputs": [
+        {
+      "dtype": "3x8i",
+      "description": "file containing set of points to be used as dataset (the tags need to be the same)",
+      "max_weight": 524288000,
+      "ext": ".dat",
+      "required": true,
+      "type": "data"
+    }
+    
+    ], 
+    "results": [
+        {
+            "contents": {
+                "results": "resultLines.png"
+            }, 
+            "label": "Original and noisy", 
+            "type": "gallery"
+        },
+        {
+      "contents":"stdout.txt",
+      "label":"<b>Results</b><br/>",
+      "style":"''",
+      "type":"text_file"
+    },
+    {
+      "contents":"stderr.txt",
+      "label":"<b>std erreor:</b><br/>",
+      "style":"''",
+      "type":"text_file"
+    },
+    {
+      "contents":"plotDataLines.plt",
+      "label":"<b>plotDataLines.plt</b><br/>",
+      "style":"''",
+      "type":"text_file"
+    },
+    {
+      "contents":"input_0.dat",
+      "label":"<b>input_0.dat</b><br/>",
+      "style":"''",
+      "type":"text_file"
+    }
+    ],
+    
+    
+   "run":"${demoextras}/DemoExtras/run.sh  ${demoextras} input_0.dat plotDataLines.plt resultLines.png"
+}
