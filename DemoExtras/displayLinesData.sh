@@ -59,10 +59,20 @@ while read line; do
 done < lines.dat
 if [ $DISPLAYTYPE -eq 1 ] || [ $DISPLAYTYPE -eq 2 ]
 then
-    echo , \'$DATAPOINTS\' using 1:2:3 with points palette pointsize 0.5 pointtype 6 >> $PLOTFILE
+    if [ $FIRST -eq 3 ]
+    then 
+        echo \'$DATAPOINTS\' using 1:2:3 with points palette pointsize 0.5 pointtype 6 >> $PLOTFILE
+    else
+        echo , \'$DATAPOINTS\' using 1:2:3 with points palette pointsize 0.5 pointtype 6 >> $PLOTFILE
+
+    fi
 fi
 
+if [ $FIRST -eq 3 ] && [ $DISPLAYTYPE -eq 0 ]
+then
+    echo  \'$DATAPOINTS\' using 1:2:3 with points pointsize 0.5 pointtype 6 lc rgb \"FFFFFF00\" >> $PLOTFILE
+fi
 
-   echo $(/usr/bin/gnuplot ${PLOTFILE}) 
+echo $(/usr/bin/gnuplot ${PLOTFILE}) 
 
 exit 0
