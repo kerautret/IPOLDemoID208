@@ -14,11 +14,11 @@
     
     "general": {
         "demo_title": "Iterative Hough Transform for Line Detection in 3D Point Clouds",
-        "xlink_article" : ""
+        "xlink_article" : "",
+        "input_description": "Statokinesigrams(txt file)"
     }, 
     "inputs": [
         {
-      "dtype": "3x8i",
       "description": "file containing set of points to be used as dataset (the tags need to be the same)",
       "max_weight": 524288000,
       "ext": ".dat",
@@ -36,11 +36,17 @@
             "type": "gallery"
         },
         {
+      "contents":"resultLines.eps",
+      "label":"'postscript'",
+      "type":"file_download"
+    },
+        {
       "contents":"stdout.txt",
       "label":"<b>Results</b><br/>",
       "style":"''",
       "type":"text_file"
     },
+   
     {
       "contents":"stderr.txt",
       "label":"<b>std erreor:</b><br/>",
@@ -62,5 +68,41 @@
     ],
     
     
-   "run":"${demoextras}/DemoExtras/run.sh  ${demoextras} input_0.dat plotDataLines.plt resultLines.png"
+    "params": [
+    {
+      "label": "Maximum number of lines",
+      "id": "maxlines",
+      "type": "numeric",
+      "values": {
+        "default": 20,
+        "min": 1,
+        "max": 500,
+        "step": 1
+      }
+      },
+      {
+      "label": "Min votes",
+      "id": "minvotes",
+      "type": "numeric",
+      "values": {
+        "default": 20,
+        "min": 1,
+        "max": 500,
+        "step": 1
+       }
+      },
+      {
+      "label": "step width in x'y'-plane",
+      "id": "dx",
+      "type": "numeric",
+      "values": {
+        "default": 0.03125,
+        "min": 0.01,
+        "max": 2,
+        "step": 0.01
+      }
+      }
+  ],
+    
+   "run":"${demoextras}/DemoExtras/run.sh  ${demoextras} input_0.dat plotDataLines.plt resultLines.png ${maxlines} ${minvotes} ${dx}"
 }

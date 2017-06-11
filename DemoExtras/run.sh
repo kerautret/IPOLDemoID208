@@ -1,23 +1,27 @@
 #!/bin/bash
 
-
-echo "Test...."
-
-echo "Test. Again. AGAIN....."
-echo $(gnuplot --help)
 SPEPATH=$1
-INPUT=$2 
+INPUTDATA=$2 
 # output of generated plot file
 PLOTFILE=$3
 OUTPUT=$4
 DATALINE=lines.dat
+MAXLINES=$5
+MINVOTE=$6
+DX=$7 
+echo "cmd: $INPUTDATA -o res.dat -gnuplot  $DATALINE -nlines $MAXLINES -minvotes $MINVOTE -dx $DX "
+hough3dlines $INPUTDATA -o res.dat -gnuplot  $DATALINE -nlines $MAXLINES -minvotes $MINVOTE -dx $DX
 
 
-$(hough3dlines $INPUT -o res.dat -gnuplot  $DATALINE)
+$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE resultLines.eps 0 
+$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE resultLines.png 0
 
+$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE resultPointLines.eps 1 
+$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE resultPointLines.png 1
 
-$SPEPATH/DemoExtras/displayLinesData.sh $INPUT $DATALINE resultLines.eps  
-$SPEPATH/DemoExtras/displayLinesData.sh $INPUT $DATALINE resultLines.png  
+$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE sourcePoint.eps 2 
+$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE sourcePoint.png 2
 
 echo "done..."
 
+exit 0

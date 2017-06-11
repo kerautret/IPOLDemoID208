@@ -5,8 +5,10 @@ DATALINES=$2
 OUTPUTFILE=$3
 TYPE="${OUTPUTFILE##*.}"
 echo type="$TYPE"
+DISPLAYTYPE=$4
 
 PLOTFILE='plotLineData.plt'
+
 
 
 echo -e "\c" > $PLOTFILE
@@ -17,7 +19,7 @@ then
     echo set terminal png size 750,562     >> $PLOTFILE
 elif  [ "$TYPE" == "eps" ]
 then
-    set terminal postscript eps color  20
+    echo "set terminal postscript eps color  20" >> $PLOTFILE
 else
     echo "extension $TYPE not processed... exit"
     exit 1;
@@ -34,19 +36,33 @@ while read line; do
         echo $line >> $PLOTFILE
     elif [ $FIRST -eq 2 ]
     then
-         echo $line >> $PLOTFILE
-         echo -e "splot \c ">> $PLOTFILE
+        echo $line >> $PLOTFILE
+        echo -e "splot \c ">> $PLOTFILE
     elif [ $FIRST -eq 3 ]
     then
-         echo -e " $line with lines notitle\c " >> $PLOTFILE
+        if [ $DISPLAYTYPE -eq 2 ]
+        then 
+            echo -e " $line with lines notitle lc rgb \"FFFFFF00\"\c " >> $PLOTFILE
+        else
+            echo -e " $line with lines notitle\c " >> $PLOTFILE
+        fi
     else
-         echo -e ", $line with lines notitle\c " >> $PLOTFILE
+        if [ $DISPLAYTYPE -eq 2 ]
+        then 
+            echo -e ", $line with lines notitle lc rgb \"FFFFFF00\"\c " >> $PLOTFILE
+        else
+            echo -e ", $line with lines notitle\c " >> $PLOTFILE
+        fi
     fi
     FIRST=$(($FIRST+1))
     
 done < lines.dat
-echo , \'$DATAPOINTS\' using 1:2:3 with points palette pointsize 0.5 pointtype 6 >> $PLOTFILE
+if [ $DISPLAYTYPE -eq 1 ] || [ $DISPLAYTYPE -eq 2 ]
+then
+    echo , \'$DATAPOINTS\' using 1:2:3 with points palette pointsize 0.5 pointtype 6 >> $PLOTFILE
+fi
 
-echo $(/usr/bin/gnuplot ${PLOTFILE}) 
+
+   echo $(/usr/bin/gnuplot ${PLOTFILE}) 
 
 exit 0
