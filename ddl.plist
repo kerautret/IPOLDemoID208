@@ -6,14 +6,14 @@
             "resultPointLines.png": "input points and resulting lines",
             "resultLines.png":"resulting lines" 
         },
-        "params": ["maxlines", "dx", "minvotes"]
+        "params": ["nlines", "dx", "minvotes"]
     },
     
     "build": {
            "build1": {
-            "url": "http://ker.iutsd.univ-lorraine.fr/hough3d-src.tar.gz",
-            "construct": "cd hough3d-src; make",
-            "move": "hough3d-src/hough3dlines"
+            "url": "http://ker.iutsd.univ-lorraine.fr/hough3d-srcDemo.tar.gz",
+            "construct": "cd hough3d-srcDemo; make",
+            "move": "hough3d-srcDemo/hough3dlines"
              }
     }, 
 
@@ -61,11 +61,19 @@
       "type":"text_file"
     },
     {
-      "contents":"plotDataLines.plt",
-      "label":"<b>plotDataLines.plt</b><br/>",
+      "contents":"plotLineData.plt",
+      "label":"<b>plotLineData.plt</b><br/>",
       "style":"''",
       "type":"text_file"
     },
+    {
+      "contents":"lines.dat",
+      "label":"<b>lines.dat</b><br/>",
+      "style":"''",
+      "type":"text_file"
+    },
+    
+
     {
       "contents":"input_0.dat",
       "label":"<b>input_0.dat</b><br/>",
@@ -77,39 +85,40 @@
     
     "params": [
     {
-      "label": "Maximum number of lines",
-      "id": "maxlines",
+      "label": "maximum number of lines (nlines)",
+      "id": "nlines",
       "type": "numeric",
       "values": {
-        "default": 20,
-        "min": 1,
+        "default": 0,
+        "min": 0,
         "max": 500,
         "step": 1
       }
       },
       {
-      "label": "Min votes",
+      "label": "minimum vote count (minvotes)",
       "id": "minvotes",
       "type": "numeric",
       "values": {
-        "default": 20,
+        "default": 2,
         "min": 1,
         "max": 500,
         "step": 1
        }
       },
       {
-      "label": "step width in x'y'-plane",
+      "label": "xy step width (dx)",
       "id": "dx",
       "type": "numeric",
       "values": {
-        "default": 5,
-        "min": 0.01,
-        "max": 2,
-        "step": 0.01
+        "default": 0,
+        "min": 1,
+        "max": 1000,
+        "step": 1
       }
       }
   ],
+  
     
-   "run":"${demoextras}/DemoExtras/run.sh  ${demoextras} input_0.dat plotDataLines.plt resultLines.png ${maxlines} ${minvotes} ${dx}"
+   "run":"${demoextras}/DemoExtras/run.sh  ${demoextras} input_0.dat plotDataLines.plt resultLines.png ${nlines} ${minvotes} ${dx}"
 }
