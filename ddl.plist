@@ -1,7 +1,14 @@
 {
+    
     "archive": {
-     
-    }, 
+        "files": {
+            "sourcePoint.png":"input points",
+            "resultPointLines.png": "input points and resulting lines",
+            "resultLines.png":"resulting lines" 
+        },
+        "params": ["maxlines", "dx", "minvotes"]
+    },
+    
     "build": {
            "build1": {
             "url": "http://ker.iutsd.univ-lorraine.fr/hough3d-src.tar.gz",
@@ -9,7 +16,7 @@
             "move": "hough3d-src/hough3dlines"
              }
     }, 
-    
+
     
     
     "general": {
@@ -30,16 +37,16 @@
     "results": [
         {
             "contents": {
-                "results": "resultLines.png"
+                "input points": "sourcePoint.png",
+                "input points and resulting lines": "resultPointLines.png",
+                "resulting lines": "resultLines.png"
             }, 
-            "label": "Original and noisy", 
+
+            "label": "results", 
             "type": "gallery"
         },
-        {
-      "contents":"resultLines.eps",
-      "label":"'postscript'",
-      "type":"file_download"
-    },
+      
+        
         {
       "contents":"stdout.txt",
       "label":"<b>Results</b><br/>",
@@ -96,7 +103,7 @@
       "id": "dx",
       "type": "numeric",
       "values": {
-        "default": 0.03125,
+        "default": 5,
         "min": 0.01,
         "max": 2,
         "step": 0.01
