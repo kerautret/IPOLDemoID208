@@ -4,7 +4,13 @@
         "files": {
             "sourcePoint.png":"input points",
             "resultPointLines.png": "input points and resulting lines",
-            "resultLines.png":"resulting lines" 
+            "resultLines.png":"resulting lines",
+            "mainResult.txt":"main result output",
+            "res.dat":"Result",
+            "input_0.dat": "input data",
+            "resultLines.eps": "resulting lines (eps format) ", 
+            "resultPointLines.eps": "resulting lines and points (eps format) "
+
         },
         "params": ["nlines", "dx", "minvotes"]
     },
@@ -73,13 +79,19 @@
       "type":"text_file"
     },
     
-
     {
       "contents":"input_0.dat",
-      "label":"<b>input_0.dat</b><br/>",
-      "style":"''",
-      "type":"text_file"
+      "label":"Input data;",
+      "type":"file_download"
+    },
+     {
+      "contents":"mainResult.txt",
+      "label":"main result output;",
+      "type":"file_download"
     }
+    
+    
+    
     ],
     
     

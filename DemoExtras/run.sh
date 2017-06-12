@@ -9,7 +9,7 @@ DATALINE=lines.dat
 MAXLINES=$5
 MINVOTE=$6
 DX=$7 
-echo "cmd: $INPUTDATA -o res.dat -gnuplot  $DATALINE -nlines $MAXLINES -minvotes $MINVOTE -dx $DX "
+echo "cmd: $INPUTDATA -o mainResult.txt -gnuplot  $DATALINE -nlines $MAXLINES -minvotes $MINVOTE -dx $DX "
 hough3dlines $INPUTDATA -o res.dat -gnuplot  $DATALINE -nlines $MAXLINES -minvotes $MINVOTE -dx $DX
 
 
