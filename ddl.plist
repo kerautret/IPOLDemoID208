@@ -5,21 +5,21 @@
             "sourcePoint.png":"input points",
             "resultPointLines.png": "input points and resulting lines",
             "resultLines.png":"resulting lines",
-            "mainResult.txt":"main result output",
-            "res.dat":"Result",
-            "input_0.dat": "input data",
             "resultLines.eps": "resulting lines (eps format) ", 
-            "resultPointLines.eps": "resulting lines and points (eps format) "
-
+            "resultPointLines.eps": "resulting lines and points (eps format) ",
+            "lines.dat":"results (.dat)",
+            "input_0.dat": "input data",
+            "mainOutput.txt": "mainOutput.txt",
+            "cmd.txt": "command line"
         },
         "params": ["nlines", "dx", "minvotes"]
     },
     
     "build": {
            "build1": {
-            "url": "http://ker.iutsd.univ-lorraine.fr/hough3d-srcDemo.tar.gz",
-            "construct": "cd hough3d-srcDemo; make",
-            "move": "hough3d-srcDemo/hough3dlines"
+            "url": "http://ker.iutsd.univ-lorraine.fr/hough3d-src.tgz",
+            "construct": "cd hough3d-src; make",
+            "move": "hough3d-src/hough3dlines"
              }
     }, 
 
@@ -51,46 +51,39 @@
             "label": "results", 
             "type": "gallery"
         },
-      
-        
-        {
-      "contents":"stdout.txt",
-      "label":"<b>Results</b><br/>",
+  
+    {
+      "contents":"mainOutput.txt",
+      "label":"<b>Main algorithm ouput</b><br/>",
+      "style":"''",
+      "type":"text_file"
+    },   
+   
+    {
+      "contents":"cmd.txt",
+      "label":"Command line:",
       "style":"''",
       "type":"text_file"
     },
-   
+     
     {
-      "contents":"stderr.txt",
-      "label":"<b>std erreor:</b><br/>",
-      "style":"''",
-      "type":"text_file"
+      "contents":"input_0.dat",
+      "name":"toto",
+      "label":"Input data ",
+      "type":"file_download"
     },
     {
       "contents":"plotLineData.plt",
-      "label":"<b>plotLineData.plt</b><br/>",
+      "label":"gnuplot file ",
       "style":"''",
-      "type":"text_file"
-    },
+      "type":"file_download"
+    }, 
     {
       "contents":"lines.dat",
-      "label":"<b>lines.dat</b><br/>",
+      "label":"raw results ",
       "style":"''",
-      "type":"text_file"
-    },
-    
-    {
-      "contents":"input_0.dat",
-      "label":"Input data;",
-      "type":"file_download"
-    },
-     {
-      "contents":"mainResult.txt",
-      "label":"main result output;",
       "type":"file_download"
     }
-    
-    
     
     ],
     
@@ -128,8 +121,9 @@
         "max": 1000,
         "step": 1
       }
-      }
+     }
   ],
+  
   
     
    "run":"${demoextras}/DemoExtras/run.sh  ${demoextras} input_0.dat plotDataLines.plt resultLines.png ${nlines} ${minvotes} ${dx}"

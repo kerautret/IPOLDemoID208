@@ -6,21 +6,33 @@ INPUTDATA=$2
 PLOTFILE=$3
 OUTPUT=$4
 DATALINE=lines.dat
+
+CMDFILE=cmd.txt
+
 MAXLINES=$5
 MINVOTE=$6
 DX=$7 
-echo "cmd: $INPUTDATA -o mainResult.txt -gnuplot  $DATALINE -nlines $MAXLINES -minvotes $MINVOTE -dx $DX "
-hough3dlines $INPUTDATA -o res.dat -gnuplot  $DATALINE -nlines $MAXLINES -minvotes $MINVOTE -dx $DX
+
+CMD1="hough3dlines $INPUTDATA  -raw  -nlines $MAXLINES -minvotes $MINVOTE -dx $DX >  $DATALINE"
+CMD2="hough3dlines $INPUTDATA  -gnuplot  -nlines $MAXLINES -minvotes $MINVOTE -dx $DX |gnuplot -persist"
+
+eval $CMD1
+echo $CMD2 > $CMDFILE
 
 
-$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE resultLines.eps 0 
-$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE resultLines.png 0
 
-$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE resultPointLines.eps 1 
-$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE resultPointLines.png 1
+$SPEPATH/DemoExtras/displayLines.sh $INPUTDATA $DATALINE resultLines.eps 2 $SPEPATH/DemoExtras 
+$SPEPATH/DemoExtras/displayLines.sh $INPUTDATA $DATALINE resultLines.png 2 $SPEPATH/DemoExtras
 
-$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE sourcePoint.eps 2 
-$SPEPATH/DemoExtras/displayLinesData.sh $INPUTDATA $DATALINE sourcePoint.png 2
+$SPEPATH/DemoExtras/displayLines.sh $INPUTDATA $DATALINE sourcePoint.eps 0 $SPEPATH/DemoExtras
+$SPEPATH/DemoExtras/displayLines.sh $INPUTDATA $DATALINE sourcePoint.png 0 $SPEPATH/DemoExtras
+
+
+$SPEPATH/DemoExtras/displayLines.sh $INPUTDATA $DATALINE resultPointLines.eps 1 $SPEPATH/DemoExtras
+$SPEPATH/DemoExtras/displayLines.sh $INPUTDATA $DATALINE resultPointLines.png 1 $SPEPATH/DemoExtras
+
+$SPEPATH/DemoExtras/formatPlotLines.sh $DATALINE 3 > mainOutput.txt 
+
 
 echo "done..."
 
