@@ -28,9 +28,9 @@ while read line; do
 
            if [ $DISPLAYTYPE -eq 2 ]
            then 
-               BASE="$BASE with lines notitle lc rgb 'black'" 
+               BASE="$BASE with lines notitle" 
            else
-               BASE="$BASE with lines notitle lc rgb  \"#FFFF0000\"" 
+               BASE="$BASE with lines notitle lc rgb  \"#FFFF0000\" lw 2" 
            fi
            if [ $NUM -eq 2 ]
            then
