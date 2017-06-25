@@ -72,6 +72,13 @@
             "visible": "info.bad_alloc==1"
             
         }, 
+        {
+      "contents":"mainOutput.txt",
+      "label":"Main output:<br/>",
+      "style":"''",
+      "type":"text_file",
+      "visible": "info.bad_dx==0 && info.bad_alloc==0"
+     },
  
     {
       "contents":"stderr.txt",
@@ -103,6 +110,11 @@
       "type":"file_download",
       "visible": "info.bad_dx==0 && info.bad_alloc==0"
     }, 
+    {
+           "contents": "<h2>Raw results:</h2> The plot data in an easily machine-readable format as space separated values that can be used to automatically construct a plotting comand. <BR> The numbers have the following meaning: <BR><BR> <pre> minX maxX minY maxY minZ maxZ \n paramMin paramMax\n aX aY aZ bX bY bZ nbpoints\n</pre>  <BR>  where the first line specifies the point cloud bounding box, the second line the range of t values in the line parametrization a + t*b, and the following lines list the line parameters with one line per line.", 
+            "type": "html_text",
+            "visible":"info.bad_dx==0 && info.bad_alloc==0"
+        },
     {
       "contents":"lines.dat",
       "label":"raw results ",
