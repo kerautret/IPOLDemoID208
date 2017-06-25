@@ -36,19 +36,30 @@ echo set datafile separator \',\' >> $PLOTFILE
 echo set parametric >> $PLOTFILE
 
 $SPEPATH/formatPlotSetting.sh $DATARAW  >> $PLOTFILE
+
 echo -e "splot \c " >> $PLOTFILE
 if [ $DISPLAYTYPE -eq 0 ] || [ $DISPLAYTYPE -eq 1 ]
 then
-echo -e  "'$DATAPOINTS' using 1:2:3 with points palette pointsize 0.5 pointtype 6 \c" >> $PLOTFILE
+
+    echo -e  "'$DATAPOINTS' using 1:2:3 with points palette pointsize 0.5 pointtype 6 \c" >> $PLOTFILE
 fi
 
-if [ $DISPLAYTYPE -eq 1 ]
-then
-    echo -e " , \c" >> $PLOTFILE
-fi
 if [ $DISPLAYTYPE -eq 1 ] || [ $DISPLAYTYPE -eq 2 ]
 then
-    $SPEPATH/formatPlotLines.sh $DATARAW $DISPLAYTYPE  >> $PLOTFILE
+   $SPEPATH/formatPlotLines.sh $DATARAW $DISPLAYTYPE > TMP
+   if [ $DISPLAYTYPE -eq 1 ] && [ -s TMP ]
+   then
+       echo -e " , \c" >> $PLOTFILE
+   fi
+   if [ -s TMP ]
+   then
+       cat TMP >>  $PLOTFILE
+   else
+       if [ $DISPLAYTYPE -eq 2 ]
+          then
+              echo -e "0,0,0 notitle \c" >>  $PLOTFILE
+       fi
+   fi
 fi
 
 echo $(/usr/bin/gnuplot ${PLOTFILE}) 

@@ -67,7 +67,7 @@
             
         }, 
         {
-            "contents": "<h2>Computation Error:</h2><p> <FONT color=\"red\"><h3>Memory allocation problem</h3></FONT> <BR> You may check the value of parameter <b>dx</b> perhaps too small. You can set dx to 0 to automatically define this parameter (i.e it will use dx = (1/64)*(input bounding box size)).", 
+            "contents": "<h2>Computation Error:</h2><p> <FONT color=\"red\"><h3>Memory allocation problem</h3></FONT> <BR> You may check the value of parameter <b>dx</b> perhaps too small. You can set dx to 0 to automatically define this parameter (i.e it will use dx = (1/64)*(input bounding box size)).<BR><FONT color=\"blue\">You can try to use the source code on your own machine.</FONT>", 
             "type": "html_text",
             "visible": "info.bad_alloc==1"
             
