@@ -1,4 +1,3 @@
+./displayData.sh synthetic_a.dat synthetic_a.png 
 
-
-./displayDat.sh ../Blob/attpc_a.dat  input1.png
 

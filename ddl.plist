@@ -24,12 +24,15 @@
     }, 
 
     
-    
     "general": {
         "demo_title": "Iterative Hough Transform for Line Detection in 3D Point Clouds",
         "xlink_article" : "",
-        "input_description": "Statokinesigrams(txt file)"
-    }, 
+        "input_description": "Input type (.dat) should be in format: X,Y,Z given at each line (each coordinate separated by comma on a single line). <BR> The proposed input comes from: <ul><li><b>attpc data</b>: active target time projection chamber (ATTPC) measurement <br> <font color=\"gray\"> (best parameters: dx=15, minvotes=3 )</font></li><li><b>synthetic data</b>: synthetically generated data <BR> <font color=\"gray\">(best parameters: dx=0.5, minvotes=20)</font></li></ul> ",
+        "param_description": "You can set the values of three parameters: <ul> <li> <b>nlines</b>: maximum number of lines considered as output. The lines are selected starting from the maximal voting scores. If it is set to 0 (default) then no filter is applyed and all lines are given as output.  </li> <li><b>minvotes</b>: minimum vote to be detect lines. Increase this value to less sensitive to noise. </li> <li><b>dx</b>: step width defining the step width in x'y'-plane of the parameter space.  when dx=0, it is set to 1/64 of total width of the input point bounding box. </li>  </ul>"
+    },
+    
+     
+    
     "inputs": [
         {
       "description": "file containing set of points to be used as dataset (the tags need to be the same)",
