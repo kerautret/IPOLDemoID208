@@ -18,15 +18,26 @@ CMD2="hough3dlines $INPUTDATA  -gnuplot  -nlines $MAXLINES -minvotes $MINVOTE -d
 
 eval $CMD1
 
-ISFINE=$?
-if [ $ISFINE -eq 1 ]
+read RES < stderr.txt
+
+if [ "$RES" == "Error: dx too large" ]
 then
-    >&2 echo "(dx = $DX)"
-    >&2 echo "------------------------" 
-    >&2 echo "You can set dx to 0 to automatically define this parameter ( i.e it will use dx = (1/64)*(input bounding box size) )."
-    >&2 echo "------------------------" 
-    
-    exit 1
+    echo "bad_dx=1" >> algo_info.txt 
+    exit 0;  
+
+else
+    echo "bad_dx=0" >> algo_info.txt 
+fi
+
+RES=$(echo $RES | cut -d " " -f -5)
+echo "ERRRE:$RES";
+
+if [ "$RES" == "Error: cannot allocate memory for" ] || [ "$RES" == "Error: program was compiled in" ]
+then
+    echo "bad_alloc=1" >> algo_info.txt 
+    exit 0;  
+else
+    echo "bad_alloc=0" >> algo_info.txt 
 fi
 
 echo $CMD2 > $CMDFILE

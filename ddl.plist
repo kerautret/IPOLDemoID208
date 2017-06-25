@@ -52,42 +52,67 @@
             }, 
 
             "label": "results", 
-            "type": "gallery"
+            "type": "gallery",
+            "visible": "info.bad_dx==0 && info.bad_alloc==0"
         },
-  
+         {
+            "contents": "<h3>Compution Error:</h3><p> <FONT color=\"red\">Value of parameter <b>dx</b> too large.</FONT> <BR> You can set dx to 0 to automatically define this parameter ( i.e it will use dx = (1/64)*(input bounding box size)). ", 
+            "type": "html_text",
+            "visible": "info.bad_dx==1"
+            
+        }, 
+        {
+            "contents": "<h3>Compution Error:</h3><p> <FONT color=\"red\">Value of parameter <b>dx</b> too small (memory allocation not possible on the server). </FONT> <BR> You can set dx to 0 to automatically define this parameter ( i.e it will use dx = (1/64)*(input bounding box size)). </FONT>", 
+            "type": "html_text",
+            "visible": "info.bad_alloc==1"
+            
+        }, 
     {
       "contents":"mainOutput.txt",
       "label":"<b>Main algorithm ouput</b><br/>",
       "style":"''",
-      "type":"text_file"
+      "type":"text_file",
+       "visible": "info.bad_dx==0"
     },   
-   
+ 
+    {
+      "contents":"stderr.txt",
+      "label":"<b>std erreor:</b><br/>",
+      "style":"''",
+      "type":"text_file"
+     },
+     
     {
       "contents":"cmd.txt",
       "label":"Command line:",
       "style":"''",
-      "type":"text_file"
+      "type":"text_file",
+      "visible": "info.bad_dx==0"
     },
      
     {
       "contents":"input_0.dat",
       "name":"toto",
       "label":"Input data ",
-      "type":"file_download"
+      "type":"file_download",
+       "visible": "info.bad_dx==0"
     },
     {
       "contents":"plotLineData.plt",
       "label":"gnuplot file ",
       "style":"''",
-      "type":"file_download"
+      "type":"file_download",
+       "visible": "info.bad_dx==0"
     }, 
     {
       "contents":"lines.dat",
       "label":"raw results ",
       "style":"''",
-      "type":"file_download"
+      "type":"file_download",
+       "visible": "info.bad_dx==0"
     }
     
+
     ],
     
     
