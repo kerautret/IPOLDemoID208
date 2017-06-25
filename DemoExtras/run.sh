@@ -17,6 +17,18 @@ CMD1="hough3dlines $INPUTDATA  -raw  -nlines $MAXLINES -minvotes $MINVOTE -dx $D
 CMD2="hough3dlines $INPUTDATA  -gnuplot  -nlines $MAXLINES -minvotes $MINVOTE -dx $DX |gnuplot -persist"
 
 eval $CMD1
+
+ISFINE=$?
+if [ $ISFINE -eq 1 ]
+then
+    >&2 echo "(dx = $DX)"
+    >&2 echo "------------------------" 
+    >&2 echo "You can set dx to 0 to automatically define this parameter ( i.e it will use dx = (1/64)*(input bounding box size) )."
+    >&2 echo "------------------------" 
+    
+    exit 1
+fi
+
 echo $CMD2 > $CMDFILE
 
 
